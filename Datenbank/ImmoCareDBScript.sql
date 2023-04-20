@@ -33,6 +33,9 @@ CREATE TABLE IF NOT EXISTS TImmoEigenschaften (
   ImmoEigWohnflaeche INT NOT NULL,
   ImmoEigAusbaustandart ENUM("einfach", "normal", "luxuriös") NOT NULL,
   ImmoEigAnzahlZimmer INT NOT NULL,
+  ImmoEigAndresse VARCHAR(50),
+  ImmoEigOrt VARCHAR(30),
+  ImmoEigBilder blob,
   PRIMARY KEY (ImmoEigId))
 ENGINE = InnoDB AUTO_INCREMENT=1000;
 
