@@ -1,0 +1,12 @@
+
+*{
+    margin: 0;
+  }
+  
+  :root{
+    --title-size: 40px;
+    --text-size: 28px;
+    --h2-size: 34px;
+    --h3-size: 32px;
+    --standart-font: sans-serif;
+  }
