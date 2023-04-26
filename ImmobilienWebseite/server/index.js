@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const cors = require("cors");
 
 app.use(cors());
@@ -15,7 +15,7 @@ const db = mysql.createConnection({
 
 app.post("/create", (req, res) => {
   const bezeichnung = req.body.bezeichnung;
-  const type = req.body.type;
+  const typen = req.body.typen;
   const baujahr = req.body.baujahr;
   const grundstueckflaeche = req.body.grundstueckflaeche;
   const wohnflaeche = req.body.wohnflaeche;
@@ -25,10 +25,10 @@ app.post("/create", (req, res) => {
   const ort = req.body.ort;
 
   db.query(
-    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigType, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAdresse, ImmoEigOrt) VALUES (?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt) VALUES (?,?,?,?,?,?,?,?,?)",
     [
       bezeichnung,
-      type,
+      typen,
       baujahr,
       grundstueckflaeche,
       wohnflaeche,

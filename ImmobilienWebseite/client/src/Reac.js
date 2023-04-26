@@ -14,7 +14,7 @@ function PropertyForm() {
   const [ort, setOrt] = useState("");
 
   const addImmobilie = () => {
-    Axios.post("http://localhost:3000/create", {
+    Axios.post("http://localhost:3001/create", {
       bezeichnung: bezeichnung,
       typen: typen,
       baujahr: baujahr,
