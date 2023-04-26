@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Reac.css";
+import Axios from "axios";
 
 function PropertyForm() {
   const [bezeichnung, setBezeichnung] = useState("");
@@ -11,6 +12,22 @@ function PropertyForm() {
   const [anzahlZimmer, setAnzahlZimmer] = useState("");
   const [adresse, setAdresse] = useState("");
   const [ort, setOrt] = useState("");
+
+  const addImmobilie = () => {
+    Axios.post("http://localhost:3000/create", {
+      bezeichnung: bezeichnung,
+      typen: typen,
+      baujahr: baujahr,
+      grundstueckflaeche: grundstueckflaeche,
+      wohnflaeche: wohnflaeche,
+      ausbaustandart: ausbaustandart,
+      anzahlZimmer: anzahlZimmer,
+      adresse: adresse,
+      ort: ort,
+    }).then(() => {
+      console.log("success");
+    });
+  };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -99,7 +116,7 @@ function PropertyForm() {
         onChange={(e) => setOrt(e.target.value)}
       />
 
-      <button type="submit">Save</button>
+      <button onClick={addImmobilie}>Save</button>
     </form>
   );
 }
