@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import "./Reac.css";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function PropertyForm() {
-  const navigate = useNavigate();
   const [bezeichnung, setBezeichnung] = useState("");
   const [typen, setTypen] = useState("Einfamilienhaus");
   const [baujahr, setBaujahr] = useState("");
@@ -35,7 +33,6 @@ function PropertyForm() {
     event.preventDefault();
     // Send HTTP request to API to save property data
   };
-
   return (
     <form onSubmit={handleFormSubmit}>
       <label htmlFor="bezeichnung">Bezeichnung</label>

@@ -47,6 +47,16 @@ app.post("/create", (req, res) => {
   );
 });
 
+app.get("/Immobilien", (req, res) => {
+  db.query("SELECT * FROM TImmoEigenschaften", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.listen(3001, () => {
   console.log("GOD DID");
 });
