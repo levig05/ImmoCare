@@ -39,7 +39,7 @@ function Overview() {
             <h3>wohnflaeche: {val.ImmoEigWohnflaeche}</h3>
             <h3>ausbaustandart: {val.ImmoEigAusbaustandart}</h3>
             <h3>anzahlZimmer: {val.ImmoEigAnzahlZimmer}</h3>
-            <h3>adresse: {val.ImmoEigAdresse}</h3>
+            <h3>adresse: {val.ImmoEigAndresse}</h3>
             <h3>ort: {val.ImmoEigOrt}</h3>
           </div>
         );
