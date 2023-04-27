@@ -32,15 +32,15 @@ function Overview() {
       {ImmobilienList.map((val, key) => {
         return (
           <div key={key}>
-            <h3>bezeichnung: {val.bezeichnung}</h3>
-            <h3>typen: {val.typen}</h3>
-            <h3>baujahr: {val.baujahr}</h3>
-            <h3>grundstueckflaeche: {val.grundstueckflaeche}</h3>
-            <h3>wohnflaeche: {val.wohnflaeche}</h3>
-            <h3>ausbaustandart: {val.ausbaustandart}</h3>
-            <h3>anzahlZimmer: {val.anzahlZimmer}</h3>
-            <h3>adresse: {val.adresse}</h3>
-            <h3>ort: {val.ort}</h3>
+            <h3>bezeichnung: {val.ImmoEigBezeichnung}</h3>
+            <h3>typen: {val.ImmoEigTypen}</h3>
+            <h3>baujahr: {val.ImmoEigBaujahr}</h3>
+            <h3>grundstueckflaeche: {val.ImmoEigGrundstueckflaeche}</h3>
+            <h3>wohnflaeche: {val.ImmoEigWohnflaeche}</h3>
+            <h3>ausbaustandart: {val.ImmoEigAusbaustandart}</h3>
+            <h3>anzahlZimmer: {val.ImmoEigAnzahlZimmer}</h3>
+            <h3>adresse: {val.ImmoEigAdresse}</h3>
+            <h3>ort: {val.ImmoEigOrt}</h3>
           </div>
         );
       })}
