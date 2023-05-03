@@ -9,6 +9,12 @@ function Overview() {
   const Bearbeiten = () => {
     navigate("/Reac");
   };
+ 
+  const Edit = () => {
+    navigate("/Reac1");
+  };
+
+
 
   const [ImmobilienList, setImmobilienList] = useState([]);
 
@@ -26,9 +32,11 @@ function Overview() {
           </h4>
           <p>Beispieladresse 123</p>
         </div>
-      </div>
       <button onClick={Bearbeiten}>Hinzufügen</button>
+      <button onClick={Edit}>Editieren</button>
 
+      </div>
+      
       {ImmobilienList.map((val, key) => {
         return (
           <div key={key}>
