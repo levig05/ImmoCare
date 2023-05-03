@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./overview.css";
 import testimmo from "../assets/testimmo.jpeg";
 import { useNavigate } from "react-router-dom";
@@ -6,9 +6,23 @@ import Axios from "axios";
 
 function Overview() {
   const navigate = useNavigate();
+  const [base64, setBase64] = useState("");
   const Bearbeiten = () => {
     navigate("/Reac");
   };
+
+  useEffect(() => {
+    // Bild von der MySQL-Datenbank abrufen
+    fetch("/picture")
+      .then((response) => response.json())
+      .then((data) => {
+        // Bild als Base64-codierten String speichern
+        const base64String = btoa(
+          String.fromCharCode.apply(null, new Uint8Array(data[0].Bild))
+        );
+        setBase64("data:image/jpeg;base64," + base64String);
+      });
+  }, []);
 
   const [ImmobilienList, setImmobilienList] = useState([]);
 
@@ -18,6 +32,7 @@ function Overview() {
 
   return (
     <div className="overview">
+      <img src={base64} alt="Bild" />
       <div className="Searchbar">
         <input
           type="text"

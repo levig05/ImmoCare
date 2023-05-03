@@ -12,6 +12,7 @@ function PropertyForm() {
   const [anzahlZimmer, setAnzahlZimmer] = useState("");
   const [adresse, setAdresse] = useState("");
   const [ort, setOrt] = useState("");
+  const [bilder, setBilder] = useState("");
   const [mietzustand, setMietzustand] = useState("");
   const [zustand, setZustand] = useState("");
 
@@ -26,6 +27,7 @@ function PropertyForm() {
       anzahlZimmer: anzahlZimmer,
       adresse: adresse,
       ort: ort,
+      bilder: bilder,
       mietzustand: mietzustand,
       zustand: zustand,
     }).then(() => {
@@ -117,6 +119,14 @@ function PropertyForm() {
         id="ort"
         value={ort}
         onChange={(e) => setOrt(e.target.value)}
+      />
+
+      <label htmlFor="bilder">Bilder</label>
+      <input
+        type="file"
+        id="bilder"
+        value={bilder}
+        onChange={(e) => setBilder(e.target.value)}
       />
 
       <label htmlFor="typen">Mietzustand</label>

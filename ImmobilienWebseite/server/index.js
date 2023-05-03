@@ -23,11 +23,12 @@ app.post("/create", (req, res) => {
   const anzahlZimmer = req.body.anzahlZimmer;
   const adresse = req.body.adresse;
   const ort = req.body.ort;
+  const bilder = req.body.ort;
   const mietzustand = req.body.mietzustand;
   const zustand = req.body.zustand;
 
   db.query(
-    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigMietzustand, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigBilder, ImmoEigMietzustand, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
     [
       bezeichnung,
       typen,
@@ -38,6 +39,7 @@ app.post("/create", (req, res) => {
       anzahlZimmer,
       adresse,
       ort,
+      bilder,
       mietzustand,
       zustand,
     ],
@@ -59,6 +61,17 @@ app.get("/Immobilien", (req, res) => {
       res.send(result);
     }
   });
+});
+
+app.get("/picture", (req, res) => {
+  // Bild von der MySQL-Datenbank abrufen
+  connection.query(
+    "SELECT ImmoEigBilder FROM TImmobilienEigenschaften",
+    (error, results, fields) => {
+      if (error) throw error;
+      res.json(results);
+    }
+  );
 });
 
 app.listen(3001, () => {
