@@ -63,15 +63,20 @@ app.get("/Immobilien", (req, res) => {
   });
 });
 
-app.get("/picture", (req, res) => {
-  // Bild von der MySQL-Datenbank abrufen
-  connection.query(
-    "SELECT ImmoEigBilder FROM TImmobilienEigenschaften",
-    (error, results, fields) => {
-      if (error) throw error;
-      res.json(results);
+// Suchroute
+app.get("/search", (req, res) => {
+  const searchTerm = req.query.q;
+
+  const sql = `SELECT * FROM TImmoEigenschaften WHERE ImmoEigBezeichnung LIKE '%${searchTerm}%'`;
+
+  connection.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error searching in MySQL:", error);
+      res.status(500).send("Internal server error");
+    } else {
+      res.send(results);
     }
-  );
+  });
 });
 
 app.listen(3001, () => {
