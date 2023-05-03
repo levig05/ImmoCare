@@ -18,6 +18,13 @@ function Overview() {
 
   return (
     <div className="overview">
+      <div className="Searchbar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Suchbegriff eingeben..."
+        ></input>
+      </div>
       <div class="card">
         <img src={testimmo} alt="Immobilie" width="100%"></img>
         <div class="container">
@@ -26,6 +33,7 @@ function Overview() {
           </h4>
           <p>Beispieladresse 123</p>
         </div>
+        <button>Bearbeiten</button>
       </div>
       <button onClick={Bearbeiten}>Hinzufügen</button>
 
