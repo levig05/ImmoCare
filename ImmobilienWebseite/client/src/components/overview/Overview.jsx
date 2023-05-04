@@ -14,11 +14,10 @@ function Overview() {
   const [ImmobilienList, setImmobilienList] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = async () => {
     const response = await Axios.get(`/search?q=${searchTerm}`);
-    setSearchResults(response.data);
+    console.log(response.data);
   };
 
   Axios.get("http://localhost:3001/Immobilien").then((response) => {
@@ -33,12 +32,6 @@ function Overview() {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
-      <ul>
-        {searchResults.map((result) => (
-          <li key={result.id}>{result.name}</li>
-        ))}
-      </ul>
-
       <div className="overview">
         <div className="Searchbar"></div>
         <div class="card">
