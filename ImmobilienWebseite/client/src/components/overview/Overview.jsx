@@ -16,7 +16,9 @@ function Overview() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = async () => {
-    const response = await Axios.get(`/search?q=${searchTerm}`);
+    const response = await Axios.get(
+      `http://localhost:3001/search?q=${searchTerm}`
+    );
     console.log(response.data);
   };
 

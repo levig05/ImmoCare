@@ -6,7 +6,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
+const connection = mysql.createConnection({
   user: "SC_ImmoMan",
   host: "i-kf.ch",
   password: "e8ZgT5-Rf",
@@ -27,7 +27,7 @@ app.post("/create", (req, res) => {
   const mietzustand = req.body.mietzustand;
   const zustand = req.body.zustand;
 
-  db.query(
+  connection.query(
     "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigBilder, ImmoEigMietzustand, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
     [
       bezeichnung,
@@ -54,7 +54,7 @@ app.post("/create", (req, res) => {
 });
 
 app.get("/Immobilien", (req, res) => {
-  db.query("SELECT * FROM TImmoEigenschaften", (err, result) => {
+  connection.query("SELECT * FROM TImmoEigenschaften", (err, result) => {
     if (err) {
       console.log(err);
     } else {
