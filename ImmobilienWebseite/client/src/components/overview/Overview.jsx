@@ -11,8 +11,7 @@ function Overview() {
     navigate("/Reac");
   };
 
-  const [ImmobilienList, setImmobilienList] = useState([]);
-
+  const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = async () => {
@@ -20,23 +19,28 @@ function Overview() {
       `http://localhost:3001/search?q=${searchTerm}`
     );
     console.log(response.data);
+    if (response.data.length !== 0) {
+      setSearchResults(response.data);
+    } else {
+      alert("Keine Ergebnisse gefunden");
+    }
   };
-
-  Axios.get("http://localhost:3001/Immobilien").then((response) => {
-    setImmobilienList(response.data);
-  });
 
   return (
     <>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
+      <div className="Searchbar">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <button className="Searchbutton" onClick={handleSearch}>
+        &#x1F50D;
+      </button>
       <div className="overview">
         <div className="Searchbar"></div>
-        <div class="card">
+        <div className="card">
           <img src={testimmo} alt="Immobilie" width="100%"></img>
           <div class="container">
             <h4>
@@ -46,11 +50,13 @@ function Overview() {
           </div>
           <button>Bearbeiten</button>
         </div>
-        <button onClick={Bearbeiten}>Hinzufügen</button>
+        <button className="HinzufügenButton" onClick={Bearbeiten}>
+          Hinzufügen
+        </button>
 
-        {ImmobilienList.map((val, key) => {
+        {searchResults.map((val, key) => {
           return (
-            <div key={key}>
+            <div className="Responses" key={key}>
               <h3>bezeichnung: {val.ImmoEigBezeichnung}</h3>
               <h3>typen: {val.ImmoEigTypen}</h3>
               <h3>baujahr: {val.ImmoEigBaujahr}</h3>
@@ -60,6 +66,8 @@ function Overview() {
               <h3>anzahlZimmer: {val.ImmoEigAnzahlZimmer}</h3>
               <h3>adresse: {val.ImmoEigAndresse}</h3>
               <h3>ort: {val.ImmoEigOrt}</h3>
+              <h3>Mietzustand: {val.ImmoEigMietzustand}</h3>
+              <h3>Zustand: {val.ImmoEigZustand}</h3>
             </div>
           );
         })}

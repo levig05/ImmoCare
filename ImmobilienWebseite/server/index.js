@@ -53,16 +53,6 @@ app.post("/create", (req, res) => {
   );
 });
 
-app.get("/Immobilien", (req, res) => {
-  connection.query("SELECT * FROM TImmoEigenschaften", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
-
 // Suchroute
 app.get("/search", (req, res) => {
   const searchTerm = req.query.q;
