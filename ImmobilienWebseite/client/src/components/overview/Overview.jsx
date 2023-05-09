@@ -54,7 +54,9 @@ function Overview() {
             </h4>
             <p>Beispieladresse 123</p>
           </div>
-          <button>Bearbeiten</button>
+          <button onClick={Edit}>
+         Edit
+        </button>
         </div>
         <button className="HinzufügenButton" onClick={Bearbeiten}>
           Hinzufügen

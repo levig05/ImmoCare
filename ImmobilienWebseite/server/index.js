@@ -53,6 +53,74 @@ app.post("/create", (req, res) => {
   );
 });
 
+
+app.put("/put", (req, res) => {
+  const id = req.params.id;
+  const bezeichnung = req.body.bezeichnung;
+  const typen = req.body.typen;
+  const baujahr = req.body.baujahr;
+  const grundstueckflaeche = req.body.grundstueckflaeche;
+  const wohnflaeche = req.body.wohnflaeche;
+  const ausbaustandart = req.body.ausbaustandart;
+  const anzahlZimmer = req.body.anzahlZimmer;
+  const adresse = req.body.adresse;
+  const ort = req.body.ort;
+  const bilder = req.body.ort;
+  const mietzustand = req.body.mietzustand;
+  const zustand = req.body.zustand;
+
+  connection.query(
+    "UPDATE TImmoEigenschaften SET ImmoEigTypen=?, ImmoEigBaujahr=?, ImmoEigGrundstueckflaeche=?, ImmoEigWohnflaeche=?, ImmoEigAusbaustandart=?, ImmoEigAnzahlZimmer=?, ImmoEigAndresse=?, ImmoEigOrt=?, ImmoEigBilder=?, ImmoEigMietzustand=?, ImmoEigZustand=? WHERE ImmoEigBezeichnung='test'",
+    
+    [
+      bezeichnung,
+      typen,
+      baujahr,
+      grundstueckflaeche,
+      wohnflaeche,
+      ausbaustandart,
+      anzahlZimmer,
+      adresse,
+      ort,
+      bilder,
+      mietzustand,
+      zustand,
+      id
+    ],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Values Updated");
+      }
+    }
+  );
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Suchroute
 app.get("/search", (req, res) => {
   const searchTerm = req.query.q;
@@ -68,6 +136,14 @@ app.get("/search", (req, res) => {
     }
   });
 });
+
+
+
+
+
+
+
+
 
 app.listen(3001, () => {
   console.log("GOD DID");
