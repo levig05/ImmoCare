@@ -15,3 +15,24 @@
 .container {
   padding: 2px 16px;
 }
+
+.Searchbar {
+  float: right;
+}
+
+.Searchbutton {
+  float: right;
+  height: 40px;
+}
+
+.Responses {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.HinzufügenButton {
+  float: right;
+  height: 50px;
+  width: 200px;
+}

@@ -6,7 +6,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
+const connection = mysql.createConnection({
   user: "SC_ImmoMan",
   host: "i-kf.ch",
   password: "e8ZgT5-Rf",
@@ -23,9 +23,12 @@ app.post("/create", (req, res) => {
   const anzahlZimmer = req.body.anzahlZimmer;
   const adresse = req.body.adresse;
   const ort = req.body.ort;
+  const bilder = req.body.ort;
+  const mietzustand = req.body.mietzustand;
+  const zustand = req.body.zustand;
 
-  db.query(
-    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt) VALUES (?,?,?,?,?,?,?,?,?)",
+  connection.query(
+    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigBilder, ImmoEigMietzustand, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
     [
       bezeichnung,
       typen,
@@ -36,6 +39,9 @@ app.post("/create", (req, res) => {
       anzahlZimmer,
       adresse,
       ort,
+      bilder,
+      mietzustand,
+      zustand,
     ],
     (err, result) => {
       if (err) {
@@ -47,12 +53,18 @@ app.post("/create", (req, res) => {
   );
 });
 
-app.get("/Immobilien", (req, res) => {
-  db.query("SELECT * FROM TImmoEigenschaften", (err, result) => {
-    if (err) {
-      console.log(err);
+// Suchroute
+app.get("/search", (req, res) => {
+  const searchTerm = req.query.q;
+
+  const sql = `SELECT * FROM TImmoEigenschaften WHERE ImmoEigBezeichnung LIKE '%${searchTerm}%'`;
+
+  connection.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error searching in MySQL:", error);
+      res.status(500).send("Internal server error");
     } else {
-      res.send(result);
+      res.send(results);
     }
   });
 });
