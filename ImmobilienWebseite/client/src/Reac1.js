@@ -12,8 +12,6 @@ function PropertyForm1() {
   const [anzahlZimmer, setAnzahlZimmer] = useState("");
   const [adresse, setAdresse] = useState("");
   const [ort, setOrt] = useState("");
-  const [mietzustand, setMietzustand] = useState("");
-  const [zustand, setZustand] = useState("");
 
   useEffect(() => {
     // Fetch data from server and populate state variables
@@ -33,8 +31,6 @@ function PropertyForm1() {
         setAnzahlZimmer(data.ImmoEigAnzahlZimmer);
         setAdresse(data.ImmoEigAdresse);
         setOrt(data.ImmoEigOrt);
-        setMietzustand(data.ImmoEigMietzustand);
-        setZustand(data.ImmoEigOrtZustand);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -53,8 +49,6 @@ function PropertyForm1() {
       anzahlZimmer: anzahlZimmer,
       adresse: adresse,
       ort: ort,
-      mietzustand: mietzustand,
-      zustand: zustand
     }).then(() => {
       console.log("success");
     });
@@ -141,35 +135,6 @@ function PropertyForm1() {
     value={ort}
     onChange={(e) => setOrt(e.target.value)}
   />
- 
-
- <label htmlFor="typen">Mietzustand</label>
-      <select
-        id="mietzustand"
-        value={mietzustand}
-        onChange={(e) => setMietzustand(e.target.value)}
-      >
-        <option value="Besetzt">Besetzt</option>
-        <option value="Frei">Frei</option>
-      </select>
-
-      <label htmlFor="typen">Zustand</label>
-      <select
-        id="zustand"
-        value={zustand}
-        onChange={(e) => setZustand(e.target.value)}
-      >
-        <option value="Sarnierungsbedürftig">Sarnierungsbedürftig</option>
-        <option value="Neu">Neu</option>
-      </select>
-
-
-
-
-
-
-
-
 
   <button type="submit">Save</button>
 </form>

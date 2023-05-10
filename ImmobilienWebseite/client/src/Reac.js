@@ -121,6 +121,14 @@ function PropertyForm() {
         onChange={(e) => setOrt(e.target.value)}
       />
 
+      <label htmlFor="bilder">Bilder</label>
+      <input
+        type="file"
+        id="bilder"
+        value={bilder}
+        onChange={(e) => setBilder(e.target.value)}
+      />
+
       <label htmlFor="typen">Mietzustand</label>
       <select
         id="mietzustand"
@@ -134,30 +142,14 @@ function PropertyForm() {
       <label htmlFor="typen">Zustand</label>
       <select
         id="zustand"
-        value={mietzustand}
+        value={zustand}
         onChange={(e) => setZustand(e.target.value)}
       >
         <option value="Sarnierungsbedürftig">Sarnierungsbedürftig</option>
         <option value="Neu">Neu</option>
       </select>
-     
 
-      <label htmlFor="bilder">Bilder</label>
-      <input
-        type="text"
-        id="zustand"
-        value={zustand}
-        onChange={(e) => setBilder(e.target.value)}
-      />
-
-
-
-
-
-
-
-
-      <button onClick={addImmobilie} class="Blue">Save</button>
+      <button onClick={addImmobilie}>Save</button>
     </form>
   );
 }
