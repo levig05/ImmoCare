@@ -54,7 +54,7 @@ app.post("/create", (req, res) => {
 });
 
 
-app.put("/put", (req, res) => {
+app.put("/put/0", (req, res) => {
   const id = req.params.id;
   const bezeichnung = req.body.bezeichnung;
   const typen = req.body.typen;
@@ -65,15 +65,14 @@ app.put("/put", (req, res) => {
   const anzahlZimmer = req.body.anzahlZimmer;
   const adresse = req.body.adresse;
   const ort = req.body.ort;
-  const bilder = req.body.ort;
+  const bilder = req.body.bilder;
   const mietzustand = req.body.mietzustand;
   const zustand = req.body.zustand;
 
   connection.query(
-    "UPDATE TImmoEigenschaften SET ImmoEigTypen=?, ImmoEigBaujahr=?, ImmoEigGrundstueckflaeche=?, ImmoEigWohnflaeche=?, ImmoEigAusbaustandart=?, ImmoEigAnzahlZimmer=?, ImmoEigAndresse=?, ImmoEigOrt=?, ImmoEigBilder=?, ImmoEigMietzustand=?, ImmoEigZustand=? WHERE ImmoEigBezeichnung='test'",
+    "UPDATE TImmoEigenschaften SET ImmoEigTypen=?, ImmoEigBaujahr=?, ImmoEigGrundstueckflaeche=?, ImmoEigWohnflaeche=?, ImmoEigAusbaustandart=?, ImmoEigAnzahlZimmer=?, ImmoEigAndresse=?, ImmoEigOrt=?, ImmoEigBilder=?, ImmoEigMietzustand=?, ImmoEigZustand=?, ImmoEigBezeichnung=? WHERE ImmoEigID=?",
     
     [
-      bezeichnung,
       typen,
       baujahr,
       grundstueckflaeche,
@@ -85,6 +84,7 @@ app.put("/put", (req, res) => {
       bilder,
       mietzustand,
       zustand,
+      bezeichnung,
       id
     ],
     (err, result) => {
@@ -96,6 +96,7 @@ app.put("/put", (req, res) => {
     }
   );
 });
+
 
 
 

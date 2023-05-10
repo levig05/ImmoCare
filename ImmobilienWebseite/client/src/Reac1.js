@@ -39,7 +39,7 @@ function PropertyForm1() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    Axios.put("http://localhost:3001/put", {
+    Axios.put(`http://localhost:3001/put/0`, {
       bezeichnung: bezeichnung,
       typen: typen,
       baujahr: baujahr,
@@ -52,6 +52,8 @@ function PropertyForm1() {
     }).then(() => {
       console.log("success");
     });
+    
+    
   };
   return (
     <form onSubmit={handleFormSubmit}>
