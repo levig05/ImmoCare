@@ -24,11 +24,11 @@ app.post("/create", (req, res) => {
   const adresse = req.body.adresse;
   const ort = req.body.ort;
   const bilder = req.body.ort;
-  const mietzustand = req.body.mietzustand;
+  const status = req.body.status;
   const zustand = req.body.zustand;
 
   connection.query(
-    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigBilder, ImmoEigMietzustand, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigBilder, ImmoEigStatus, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
     [
       bezeichnung,
       typen,
@@ -40,7 +40,7 @@ app.post("/create", (req, res) => {
       adresse,
       ort,
       bilder,
-      mietzustand,
+      status,
       zustand,
     ],
     (err, result) => {
@@ -52,7 +52,6 @@ app.post("/create", (req, res) => {
     }
   );
 });
-
 
 app.put("/put/0", (req, res) => {
   const id = req.params.id;
@@ -66,12 +65,12 @@ app.put("/put/0", (req, res) => {
   const adresse = req.body.adresse;
   const ort = req.body.ort;
   const bilder = req.body.bilder;
-  const mietzustand = req.body.mietzustand;
+  const status = req.body.status;
   const zustand = req.body.zustand;
 
   connection.query(
-    "UPDATE TImmoEigenschaften SET ImmoEigTypen=?, ImmoEigBaujahr=?, ImmoEigGrundstueckflaeche=?, ImmoEigWohnflaeche=?, ImmoEigAusbaustandart=?, ImmoEigAnzahlZimmer=?, ImmoEigAndresse=?, ImmoEigOrt=?, ImmoEigBilder=?, ImmoEigMietzustand=?, ImmoEigZustand=?, ImmoEigBezeichnung=? WHERE ImmoEigID=?",
-    
+    "UPDATE TImmoEigenschaften SET ImmoEigTypen=?, ImmoEigBaujahr=?, ImmoEigGrundstueckflaeche=?, ImmoEigWohnflaeche=?, ImmoEigAusbaustandart=?, ImmoEigAnzahlZimmer=?, ImmoEigAndresse=?, ImmoEigOrt=?, ImmoEigBilder=?, ImmoEigStatus=?, ImmoEigZustand=?, ImmoEigBezeichnung=? WHERE ImmoEigID=?",
+
     [
       typen,
       baujahr,
@@ -82,10 +81,10 @@ app.put("/put/0", (req, res) => {
       adresse,
       ort,
       bilder,
-      mietzustand,
+      status,
       zustand,
       bezeichnung,
-      id
+      id,
     ],
     (err, result) => {
       if (err) {
@@ -96,31 +95,6 @@ app.put("/put/0", (req, res) => {
     }
   );
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Suchroute
 app.get("/search", (req, res) => {
@@ -137,14 +111,6 @@ app.get("/search", (req, res) => {
     }
   });
 });
-
-
-
-
-
-
-
-
 
 app.listen(3001, () => {
   console.log("GOD DID");

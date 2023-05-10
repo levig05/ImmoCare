@@ -13,7 +13,7 @@ function PropertyForm() {
   const [adresse, setAdresse] = useState("");
   const [ort, setOrt] = useState("");
   const [bilder, setBilder] = useState("");
-  const [mietzustand, setMietzustand] = useState("");
+  const [status, setStatus] = useState("");
   const [zustand, setZustand] = useState("");
 
   const addImmobilie = () => {
@@ -28,7 +28,7 @@ function PropertyForm() {
       adresse: adresse,
       ort: ort,
       bilder: bilder,
-      mietzustand: mietzustand,
+      status: status,
       zustand: zustand,
     }).then(() => {
       console.log("success");
@@ -129,24 +129,27 @@ function PropertyForm() {
         onChange={(e) => setBilder(e.target.value)}
       />
 
-      <label htmlFor="typen">Mietzustand</label>
+      <label htmlFor="status">Status</label>
       <select
-        id="mietzustand"
-        value={mietzustand}
-        onChange={(e) => setMietzustand(e.target.value)}
+        id="status"
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
       >
-        <option value="Besetzt">Besetzt</option>
-        <option value="Frei">Frei</option>
+        <option value="vermietet">vermietet</option>
+        <option value="leer">leer</option>
+        <option value="zum Verkauf">zum Verkauf</option>
+        <option value="verkauft">verkauft</option>
       </select>
 
-      <label htmlFor="typen">Zustand</label>
+      <label htmlFor="zustand">Zustand</label>
       <select
         id="zustand"
         value={zustand}
         onChange={(e) => setZustand(e.target.value)}
       >
         <option value="Sarnierungsbedürftig">Sarnierungsbedürftig</option>
-        <option value="Neu">Neu</option>
+        <option value="Neuwertig">Neuwertig</option>
+        <option value="Normal">Normal</option>
       </select>
 
       <button onClick={addImmobilie}>Save</button>

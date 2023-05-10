@@ -10,12 +10,10 @@ function Overview() {
   const Bearbeiten = () => {
     navigate("/Reac");
   };
- 
+
   const Edit = () => {
     navigate("/Reac1");
   };
-
-
 
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -54,9 +52,7 @@ function Overview() {
             </h4>
             <p>Beispieladresse 123</p>
           </div>
-          <button onClick={Edit}>
-         Edit
-        </button>
+          <button onClick={Edit}>Edit</button>
         </div>
         <button className="HinzufügenButton" onClick={Bearbeiten}>
           Hinzufügen
@@ -65,16 +61,16 @@ function Overview() {
         {searchResults.map((val, key) => {
           return (
             <div className="Responses" key={key}>
-              <h3>bezeichnung: {val.ImmoEigBezeichnung}</h3>
-              <h3>typen: {val.ImmoEigTypen}</h3>
-              <h3>baujahr: {val.ImmoEigBaujahr}</h3>
-              <h3>grundstueckflaeche: {val.ImmoEigGrundstueckflaeche}</h3>
-              <h3>wohnflaeche: {val.ImmoEigWohnflaeche}</h3>
-              <h3>ausbaustandart: {val.ImmoEigAusbaustandart}</h3>
-              <h3>anzahlZimmer: {val.ImmoEigAnzahlZimmer}</h3>
-              <h3>adresse: {val.ImmoEigAndresse}</h3>
-              <h3>ort: {val.ImmoEigOrt}</h3>
-              <h3>Mietzustand: {val.ImmoEigMietzustand}</h3>
+              <h3>Bezeichnung: {val.ImmoEigBezeichnung}</h3>
+              <h3>Typen: {val.ImmoEigTypen}</h3>
+              <h3>Baujahr: {val.ImmoEigBaujahr}</h3>
+              <h3>Grundstueckflaeche: {val.ImmoEigGrundstueckflaeche}</h3>
+              <h3>Wohnflaeche: {val.ImmoEigWohnflaeche}</h3>
+              <h3>Ausbaustandart: {val.ImmoEigAusbaustandart}</h3>
+              <h3>AnzahlZimmer: {val.ImmoEigAnzahlZimmer}</h3>
+              <h3>Adresse: {val.ImmoEigAndresse}</h3>
+              <h3>Ort: {val.ImmoEigOrt}</h3>
+              <h3>Status: {val.ImmoEigStatus}</h3>
               <h3>Zustand: {val.ImmoEigZustand}</h3>
             </div>
           );
