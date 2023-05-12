@@ -23,12 +23,13 @@ app.post("/create", (req, res) => {
   const anzahlZimmer = req.body.anzahlZimmer;
   const adresse = req.body.adresse;
   const ort = req.body.ort;
+  const plz = req.body.plz;
   const bilder = req.body.ort;
   const status = req.body.status;
   const zustand = req.body.zustand;
 
   connection.query(
-    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigBilder, ImmoEigStatus, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigPLZ, ImmoEigBilder, ImmoEigStatus, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
     [
       bezeichnung,
       typen,
@@ -39,6 +40,7 @@ app.post("/create", (req, res) => {
       anzahlZimmer,
       adresse,
       ort,
+      plz,
       bilder,
       status,
       zustand,
