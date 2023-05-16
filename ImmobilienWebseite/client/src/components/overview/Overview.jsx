@@ -3,6 +3,7 @@ import "./overview.css";
 import testimmo from "../assets/testimmo.jpeg";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import ImmoAufruf from "./immo/ImmoAufruf";
 
 function Overview() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ function Overview() {
 
   return (
     <>
+      <ImmoAufruf />
       <div className="Searchbar">
         <input
           type="text"
@@ -44,16 +46,6 @@ function Overview() {
       </button>
       <div className="overview">
         <div className="Searchbar"></div>
-        <div className="card">
-          <img src={testimmo} alt="Immobilie" width="100%"></img>
-          <div class="container">
-            <h4>
-              <b>Wohnhaus 1</b>
-            </h4>
-            <p>Beispieladresse 123</p>
-          </div>
-          <button onClick={Edit}>Edit</button>
-        </div>
         <button className="HinzufügenButton" onClick={Bearbeiten}>
           Hinzufügen
         </button>
