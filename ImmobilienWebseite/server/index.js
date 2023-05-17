@@ -112,6 +112,20 @@ app.get("/search", (req, res) => {
   });
 });
 
+app.delete("/delete:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = "DELETE FROM TImmoEigenschaften WHERE id = ?";
+  connection.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error("Error deleting data:", err);
+      res.status(500).json({ error: "An error occurred" });
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
 app.listen(3001, () => {
   console.log("GOD DID");
 });
