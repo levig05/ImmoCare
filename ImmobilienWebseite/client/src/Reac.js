@@ -13,8 +13,8 @@ function PropertyForm() {
   const [adresse, setAdresse] = useState("");
   const [ort, setOrt] = useState("");
   const [bilder, setBilder] = useState("");
-  const [status, setStatus] = useState("");
-  const [zustand, setZustand] = useState("");
+  const [status, setStatus] = useState("vermietet");
+  const [zustand, setZustand] = useState("Sanierbedürftig");
 
   const addImmobilie = () => {
     Axios.post("http://localhost:3001/create", {
