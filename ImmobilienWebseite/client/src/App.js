@@ -6,8 +6,8 @@ import PropertyForm1 from "./Reac1";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
+  return {
+    /*} <div className="App">
       <Router>
         <Routes>
           <Route
@@ -23,9 +23,9 @@ function App() {
           <Route exact path="/Reac" element={<PropertyForm />} />
           <Route exact path="/Reac1" element={<PropertyForm1 />} />
         </Routes>
-      </Router>
-    </div>
-  );
+      </Router> 
+          </div>{*/
+  };
 }
 
 export default App;

@@ -1,5 +1,7 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import ImmobilienListe from "./ImmobilienListe.jsx";
+import ImmobilienDetailsPage from "./ImmobilienDetailsPage.jsx";
 
 const immobilienData = [
   {
@@ -21,10 +23,17 @@ const immobilienData = [
 
 const ImmoAufruf = () => {
   return (
-    <div>
-      <h1>Immobilienliste</h1>
-      <ImmobilienListe immobilien={immobilienData} />
-    </div>
+    <Router>
+      <div>
+        <h1>Immobilienliste</h1>
+        <Route exact path="/immobilien">
+          <ImmobilienListe immobilien={immobilienData} />
+        </Route>
+        <Route path="/immobilien/:id">
+          <ImmobilienDetailsPage immobilien={immobilienData} />
+        </Route>
+      </div>
+    </Router>
   );
 };
 
