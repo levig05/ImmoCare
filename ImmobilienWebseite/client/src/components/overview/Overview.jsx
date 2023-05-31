@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import ImmoAufruf from "./immo/ImmoAufruf";
 
-function Overview() {
+function Overview({setSearchResults, searchResults}) {
   const navigate = useNavigate();
 
   const Hinzufügen = () => {
@@ -16,7 +16,6 @@ function Overview() {
     navigate("/Reac1");
   };
 
-  const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = async () => {
@@ -43,7 +42,7 @@ function Overview() {
       <button className="Searchbutton" onClick={handleSearch}>
         &#x1F50D;
       </button>
-      <ImmoAufruf />
+      <ImmoAufruf immo={searchResults} />
 
       <div className="overview">
         <div className="Searchbar"></div>

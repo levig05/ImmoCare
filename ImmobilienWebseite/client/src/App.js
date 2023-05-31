@@ -4,10 +4,29 @@ import Overview from "./components/overview/Overview";
 import PropertyForm from "./Reac";
 import PropertyForm1 from "./Reac1";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ImmobilienDetailsPage from "./components/overview/immo/ImmobilienDetailsPage";
+import React, {useState} from "react";
 
 function App() {
-  return {
-    /*} <div className="App">
+    const [searchResults, setSearchResults] = useState([
+        {
+            id: 1,
+            name: "Immobilie 1",
+            adresse: "Adresse 1",
+            bild: "bild1.jpg",
+            // Weitere Informationen zur Immobilie
+        },
+        {
+            id: 2,
+            name: "Immobilie 2",
+            adresse: "Adresse 2",
+            bild: "bild2.jpg",
+            // Weitere Informationen zur Immobilie
+        },
+        // Weitere Immobilien
+    ]);
+    return (
+      <div className="App">
       <Router>
         <Routes>
           <Route
@@ -16,16 +35,17 @@ function App() {
             element={
               <div>
                 <Header />
-                <Overview />
+                <Overview searchResults={searchResults} setSearchResults={setSearchResults} />
               </div>
             }
           />
           <Route exact path="/Reac" element={<PropertyForm />} />
           <Route exact path="/Reac1" element={<PropertyForm1 />} />
+        <Route path="/immobilien/:id" element={<ImmobilienDetailsPage immobilien={searchResults} />}/>
         </Routes>
       </Router> 
-          </div>{*/
-  };
+          </div>
+  );
 }
 
 export default App;
