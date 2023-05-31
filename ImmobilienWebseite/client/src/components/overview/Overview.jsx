@@ -8,7 +8,7 @@ import ImmoAufruf from "./immo/ImmoAufruf";
 function Overview() {
   const navigate = useNavigate();
 
-  const Bearbeiten = () => {
+  const Hinzufügen = () => {
     navigate("/Reac");
   };
 
@@ -33,7 +33,6 @@ function Overview() {
 
   return (
     <>
-      <ImmoAufruf />
       <div className="Searchbar">
         <input
           type="text"
@@ -44,9 +43,11 @@ function Overview() {
       <button className="Searchbutton" onClick={handleSearch}>
         &#x1F50D;
       </button>
+      <ImmoAufruf />
+
       <div className="overview">
         <div className="Searchbar"></div>
-        <button className="HinzufügenButton" onClick={Bearbeiten}>
+        <button className="HinzufügenButton" onClick={Hinzufügen}>
           Hinzufügen
         </button>
 
