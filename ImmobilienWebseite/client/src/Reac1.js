@@ -14,7 +14,9 @@ function PropertyForm1() {
   const [ort, setOrt] = useState("");
   const [bilder, setBilder] = useState("");
   const [status, setStatus] = useState("vermietet");
+
   const [zustand, setZustand] = useState("Sanierungsbedürftig");
+
 
   useEffect(() => {
     // Fetch data from server and populate state variables
@@ -32,7 +34,7 @@ function PropertyForm1() {
         setWohnflaeche(data.ImmoEigWohnflaeche);
         setAusbaustandart(data.ImmoEigAusbaustandart);
         setAnzahlZimmer(data.ImmoEigAnzahlZimmer);
-        setAdresse(data.ImmoEigAdresse);
+        setAdresse(data.ImmoEigAndresse);
         setOrt(data.ImmoEigOrt);
         setBilder(data.ImmoEigBilder);
         setStatus(data.ImmoEigStatus);
@@ -55,6 +57,9 @@ function PropertyForm1() {
       anzahlZimmer: anzahlZimmer,
       adresse: adresse,
       ort: ort,
+      bilder: bilder,
+      status: status,
+      zustand: zustand,
     }).then(() => {
       console.log("success");
     });
@@ -140,12 +145,16 @@ function PropertyForm1() {
         onChange={(e) => setOrt(e.target.value)}
       />
 
+
       <label htmlFor="bilder">Bilder</label>
+
       <input
         type="file"
         id="bilder"
         value={bilder}
+
         onChange={(e) => setBilder(e.target.value)}
+
       />
 
       <label htmlFor="status">Status</label>
@@ -160,7 +169,10 @@ function PropertyForm1() {
         <option value="verkauft">verkauft</option>
       </select>
 
-      <label htmlFor="zustand">zustand</label>
+
+
+      <label htmlFor="zustand">Zustand</label>
+
       <select
         id="zustand"
         value={zustand}

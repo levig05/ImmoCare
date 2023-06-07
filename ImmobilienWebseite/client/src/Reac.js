@@ -15,7 +15,9 @@ function PropertyForm() {
   const [plz, setPLZ] = useState("");
   const [bilder, setBilder] = useState("");
   const [status, setStatus] = useState("vermietet");
+
   const [zustand, setZustand] = useState("Sanierungsbedürftig");
+
 
   const addImmobilie = () => {
     Axios.post("http://localhost:3001/create", {
