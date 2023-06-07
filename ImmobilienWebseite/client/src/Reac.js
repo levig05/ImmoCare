@@ -12,9 +12,10 @@ function PropertyForm() {
   const [anzahlZimmer, setAnzahlZimmer] = useState("");
   const [adresse, setAdresse] = useState("");
   const [ort, setOrt] = useState("");
+  const [plz, setPLZ] = useState("");
   const [bilder, setBilder] = useState("");
   const [status, setStatus] = useState("vermietet");
-  const [zustand, setZustand] = useState("Sanierbedürftig");
+  const [zustand, setZustand] = useState("Sanierungsbedürftig");
 
   const addImmobilie = () => {
     Axios.post("http://localhost:3001/create", {
@@ -27,6 +28,7 @@ function PropertyForm() {
       anzahlZimmer: anzahlZimmer,
       adresse: adresse,
       ort: ort,
+      plz: plz,
       bilder: bilder,
       status: status,
       zustand: zustand,
@@ -121,6 +123,14 @@ function PropertyForm() {
         onChange={(e) => setOrt(e.target.value)}
       />
 
+      <label htmlFor="plz">PLZ</label>
+      <input
+        type="text"
+        id="plz"
+        value={plz}
+        onChange={(e) => setPLZ(e.target.value)}
+      />
+
       <label htmlFor="bilder">Bilder</label>
       <input
         type="file"
@@ -147,7 +157,7 @@ function PropertyForm() {
         value={zustand}
         onChange={(e) => setZustand(e.target.value)}
       >
-        <option value="Sarnierungsbedürftig">Sarnierungsbedürftig</option>
+        <option value="Sanierungsbedürftig">Sanierungsbedürftig</option>
         <option value="Neuwertig">Neuwertig</option>
         <option value="Normal">Normal</option>
       </select>
