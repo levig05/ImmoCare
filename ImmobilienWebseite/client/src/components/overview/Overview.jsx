@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import ImmoAufruf from "./immo/ImmoAufruf";
 
-function Overview({setSearchResults, searchResults}) {
+function Overview({ setSearchResults, searchResults }) {
   const navigate = useNavigate();
 
   const Hinzufügen = () => {

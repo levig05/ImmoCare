@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Reac.css";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function PropertyForm() {
   const [bezeichnung, setBezeichnung] = useState("");
@@ -18,7 +19,6 @@ function PropertyForm() {
 
   const [zustand, setZustand] = useState("Sanierungsbedürftig");
 
-
   const addImmobilie = () => {
     Axios.post("http://localhost:3001/create", {
       bezeichnung: bezeichnung,
@@ -35,8 +35,13 @@ function PropertyForm() {
       status: status,
       zustand: zustand,
     }).then(() => {
-      console.log("success");
+      alert("Die Daten wurden in der DB gespeichert.");
     });
+  };
+  const navigate = useNavigate();
+
+  const Hinzufügen = () => {
+    navigate("/");
   };
 
   const handleFormSubmit = (event) => {
@@ -165,6 +170,9 @@ function PropertyForm() {
       </select>
 
       <button onClick={addImmobilie}>Save</button>
+      <button className="HinzufügenButton" onClick={Hinzufügen}>
+        Zurück
+      </button>
     </form>
   );
 }

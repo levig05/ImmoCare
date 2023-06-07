@@ -24,7 +24,7 @@ app.post("/create", (req, res) => {
   const adresse = req.body.adresse;
   const ort = req.body.ort;
   const plz = req.body.plz;
-  const bilder = req.body.ort;
+  const bilder = req.body.bilder;
   const status = req.body.status;
   const zustand = req.body.zustand;
 
