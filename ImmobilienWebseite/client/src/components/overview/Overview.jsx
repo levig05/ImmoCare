@@ -3,6 +3,8 @@ import "./overview.css";
 import testimmo from "../assets/testimmo.jpeg";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import Reference from "./reference/Reference";
+import Projects from "./reference/Reference";
 
 function Overview() {
   const navigate = useNavigate();
@@ -31,6 +33,7 @@ function Overview() {
   };
 
   return (
+<<<<<<< Updated upstream
     <>
       <div className="Searchbar">
         <input
@@ -38,6 +41,18 @@ function Overview() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+=======
+    <div className="overview">
+      <Projects />
+      <div class="card">
+        <img src={testimmo} alt="Immobilie" width="100%"></img>
+        <div class="container">
+          <h4>
+            <b>Wohnhaus 1</b>
+          </h4>
+          <p>Beispieladresse 123</p>
+        </div>
+>>>>>>> Stashed changes
       </div>
       <button className="Searchbutton" onClick={handleSearch}>
         &#x1F50D;
