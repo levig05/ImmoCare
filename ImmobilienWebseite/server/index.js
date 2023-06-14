@@ -24,7 +24,7 @@ app.post("/create", (req, res) => {
   const adresse = req.body.adresse;
   const ort = req.body.ort;
   const plz = req.body.plz;
-  const bilder = req.body.ort;
+  const bilder = req.body.bilder;
   const status = req.body.status;
   const zustand = req.body.zustand;
 
@@ -110,6 +110,20 @@ app.get("/search", (req, res) => {
       res.status(500).send("Internal server error");
     } else {
       res.send(results);
+    }
+  });
+});
+
+app.delete("/delete:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = "DELETE FROM TImmoEigenschaften WHERE id = ?";
+  connection.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error("Error deleting data:", err);
+      res.status(500).json({ error: "An error occurred" });
+    } else {
+      res.sendStatus(200);
     }
   });
 });
