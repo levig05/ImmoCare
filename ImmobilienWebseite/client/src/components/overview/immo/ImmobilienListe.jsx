@@ -1,5 +1,6 @@
 import React from "react";
 import ImmobilienKarte from "./ImmobilienKarte";
+import React1 from "./React1";
 import { useNavigate } from "react-router-dom";
 import "./ImmobilienListe.css";
 
@@ -7,7 +8,8 @@ const ImmobilienListe = ({ immobilien }) => {
   const navigate = useNavigate();
 
   const handleClick = (id) => {
-    navigate(`/immobilien/${id}`);
+ 
+    navigate(`/Reac1`);
   };
 
   return (

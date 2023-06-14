@@ -21,7 +21,8 @@ function App() {
             }
           />
           <Route exact path="/Reac" element={<PropertyForm />} />
-          <Route exact path="/Reac1" element={<PropertyForm1 />} />
+          <Route exact path="/Reac1" element={<Overview />} />
+          
         </Routes>
       </Router>
     </div>
