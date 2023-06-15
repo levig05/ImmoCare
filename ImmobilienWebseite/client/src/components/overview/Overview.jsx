@@ -29,6 +29,10 @@ function Overview({ setSearchResults, searchResults }) {
       alert("Keine Ergebnisse gefunden");
     }
   };
+  const handleReset = () => {
+    setSearchResults([]);
+    setSearchTerm("");
+  };
 
   return (
     <>
@@ -39,6 +43,9 @@ function Overview({ setSearchResults, searchResults }) {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+      <button className="Resetbutton" onClick={handleReset}>
+        &#x1F504;
+      </button>
       <button className="Searchbutton" onClick={handleSearch}>
         &#x1F50D;
       </button>
