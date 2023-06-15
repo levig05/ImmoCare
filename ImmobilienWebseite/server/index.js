@@ -114,10 +114,25 @@ app.get("/search", (req, res) => {
   });
 });
 
+app.get("/output", (req, res) => {
+  const searchTerm = req.query.q;
+
+  const sql = "SELECT * FROM TImmoEigenschaften";
+
+  connection.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error searching in MySQL:", error);
+      res.status(500).send("Internal server error");
+    } else {
+      res.send(results);
+    }
+  });
+});
+
 app.delete("/delete:id", (req, res) => {
   const { id } = req.params;
 
-  const sql = "DELETE FROM TImmoEigenschaften WHERE id = ?";
+  const sql = "DELETE FROM TImmoEigenschaften WHERE ImmoEigId = ?";
   connection.query(sql, [id], (err, result) => {
     if (err) {
       console.error("Error deleting data:", err);
