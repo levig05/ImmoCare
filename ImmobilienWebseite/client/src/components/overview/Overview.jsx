@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./overview.css";
-import testimmo from "../assets/testimmo.jpeg";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import ImmoAufruf from "./immo/ImmoAufruf";
@@ -10,10 +9,6 @@ function Overview({ setSearchResults, searchResults }) {
 
   const Hinzufügen = () => {
     navigate("/Reac");
-  };
-
-  const Edit = () => {
-    navigate("/Reac1");
   };
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,8 +27,8 @@ function Overview({ setSearchResults, searchResults }) {
   const handleReset = () => {
     setSearchResults([]);
     setSearchTerm("");
+    navigate("/");
   };
-
   return (
     <>
       <div className="Searchbar">
