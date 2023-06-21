@@ -4,17 +4,17 @@ import "./ImmobilienDetails.css";
 const ImmobilienDetails = ({ immobilie }) => {
   return (
     <div className="immobilien-details">
-      <h2>Bezeichnung: {immobilie.bezeichnung}</h2>
-      <p>Typen: {immobilie.typen}</p>
-      <p>Baujahr: {immobilie.baujahr}</p>
-      <p>Grundstückfläche: {immobilie.grundstueckflaeche}</p>
-      <p>Wohnfläche: {immobilie.wohnflaeche}</p>
-      <p>Ausbaustandart: {immobilie.ausbaustandart}</p>
-      <p>Anzahl Zimmer: {immobilie.anzahlzimmer}</p>
-      <p>Adresse: {immobilie.adresse}</p>
-      <p>Ort: {immobilie.ort}</p>
-      <p>Status: {immobilie.status}</p>
-      <p>Zustand: {immobilie.zustand}</p>
+      <h2>Bezeichnung: {immobilie.ImmoEigBezeichnung}</h2>
+      <p>Typen: {immobilie.ImmoEigTypen}</p>
+      <p>Baujahr: {immobilie.ImmoEigBaujahr}</p>
+      <p>Grundstückfläche: {immobilie.ImmoEigGrundstueckflaeche}</p>
+      <p>Wohnfläche: {immobilie.ImmoEigWohnflaeche}</p>
+      <p>Ausbaustandart: {immobilie.ImmoEigAusbaustandart}</p>
+      <p>Anzahl Zimmer: {immobilie.ImmoEigAnzahlzimmer}</p>
+      <p>Adresse: {immobilie.ImmoEigAdresse}</p>
+      <p>Ort: {immobilie.ImmoEigOrt}</p>
+      <p>Status: {immobilie.ImmoEigStatus}</p>
+      <p>Zustand: {immobilie.ImmoEigZustand}</p>
       <img src={immobilie.bild} alt={immobilie.name} />
       {/* Weitere Immobiliendetails anzeigen */}
     </div>

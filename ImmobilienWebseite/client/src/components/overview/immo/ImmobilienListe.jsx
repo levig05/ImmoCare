@@ -12,13 +12,16 @@ const ImmobilienListe = ({ immobilien }) => {
 
   return (
     <div className="immobilien-liste">
-      {immobilien.map((immobilie) => (
-        <ImmobilienKarte
-          key={immobilie.id}
-          immobilie={immobilie}
-          onClick={() => handleClick(immobilie.id)}
-        />
-      ))}
+      {immobilien.map((immobilie) => {
+        console.log(immobilie);
+        return (
+          <ImmobilienKarte
+            key={immobilie.ImmoEigId}
+            immobilie={immobilie}
+            onClick={() => handleClick(immobilie.ImmoEigId)}
+          />
+        );
+      })}
     </div>
   );
 };

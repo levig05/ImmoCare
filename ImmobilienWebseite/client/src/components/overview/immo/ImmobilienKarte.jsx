@@ -15,10 +15,10 @@ const ImmobilienKarte = ({ immobilie, onClick }) => {
   return (
     <>
       <div className="immobilien-karte" onClick={onClick}>
-        <img src={immobilie.bild} alt={immobilie.name} />
+        <img src={immobilie.bild} alt={immobilie.ImmoEigBezeichnung} />
         <div className="immobilien-info">
-          <h2>{immobilie.bezeichnung}</h2>
-          <p>{immobilie.adresse}</p>
+          <h2>{immobilie.ImmoEigBezeichnung}</h2>
+          <p>{immobilie.ImmoEigAdresse}</p>
           <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
