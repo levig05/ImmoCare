@@ -28,12 +28,13 @@ function Overview({ setSearchResults, searchResults }) {
   const handleReset = () => {
     setSearchResults([]);
     setSearchTerm("");
+    handleSearch(); // Neue Suche durchführen, um alle Daten anzuzeigen
     navigate("/");
   };
 
   useEffect(() => {
     handleSearch();
-  }, []); // Leeres Abhängigkeitsarray, damit der Effekt nur beim Start der Komponente ausgeführt wird
+  }, []);
 
   return (
     <>
@@ -43,6 +44,9 @@ function Overview({ setSearchResults, searchResults }) {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <button className="HinzufügenButton" onClick={Hinzufügen}>
+          Hinzufügen
+        </button>
       </div>
       <button className="Resetbutton" onClick={handleReset}>
         &#x1F504;
@@ -54,27 +58,6 @@ function Overview({ setSearchResults, searchResults }) {
 
       <div className="overview">
         <div className="Searchbar"></div>
-        <button className="HinzufügenButton" onClick={Hinzufügen}>
-          Hinzufügen
-        </button>
-
-        {searchResults.map((val, key) => {
-          return (
-            <div className="Responses" key={key}>
-              <h3>Bezeichnung: {val.ImmoEigBezeichnung}</h3>
-              <h3>Typen: {val.ImmoEigTypen}</h3>
-              <h3>Baujahr: {val.ImmoEigBaujahr}</h3>
-              <h3>Grundstueckflaeche: {val.ImmoEigGrundstueckflaeche}</h3>
-              <h3>Wohnflaeche: {val.ImmoEigWohnflaeche}</h3>
-              <h3>Ausbaustandart: {val.ImmoEigAusbaustandart}</h3>
-              <h3>AnzahlZimmer: {val.ImmoEigAnzahlZimmer}</h3>
-              <h3>Adresse: {val.ImmoEigAndresse}</h3>
-              <h3>Ort: {val.ImmoEigOrt}</h3>
-              <h3>Status: {val.ImmoEigStatus}</h3>
-              <h3>Zustand: {val.ImmoEigZustand}</h3>
-            </div>
-          );
-        })}
       </div>
     </>
   );
