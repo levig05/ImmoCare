@@ -1,6 +1,5 @@
 import React from "react";
 import "./ImmobilienKarte.css";
-import axios from "axios";
 
 const ImmobilienKarte = ({ immobilie, onClick }) => {
   return (

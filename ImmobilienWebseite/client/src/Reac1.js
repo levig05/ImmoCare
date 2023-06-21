@@ -17,12 +17,11 @@ function PropertyForm1() {
 
   const [zustand, setZustand] = useState("Sanierungsbedürftig");
 
-
   useEffect(() => {
     // Fetch data from server and populate state variables
     Axios.get("http://localhost:3001/search", {
       params: {
-        q: "Test",
+        q: bezeichnung,
       },
     })
       .then((response) => {
@@ -145,16 +144,13 @@ function PropertyForm1() {
         onChange={(e) => setOrt(e.target.value)}
       />
 
-
       <label htmlFor="bilder">Bilder</label>
 
       <input
         type="file"
         id="bilder"
         value={bilder}
-
         onChange={(e) => setBilder(e.target.value)}
-
       />
 
       <label htmlFor="status">Status</label>
@@ -168,8 +164,6 @@ function PropertyForm1() {
         <option value="zum Verkauf">zum Verkauf</option>
         <option value="verkauft">verkauft</option>
       </select>
-
-
 
       <label htmlFor="zustand">Zustand</label>
 
