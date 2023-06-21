@@ -12,7 +12,7 @@ const ImmobilienDetails = ({ immobilie }) => {
 
   const handleedit = () => {
     axios
-      .delete(`http://localhost:3001/immobilien/${immobilie.ImmoEigId}`)
+      .put(`http://localhost:3001/immobilien/${immobilie.ImmoEigId}`)
       .then((response) => {
         if (response.status === 200) {
           // Immobilie erfolgreich gelöscht, zur Hauptseite navigieren
