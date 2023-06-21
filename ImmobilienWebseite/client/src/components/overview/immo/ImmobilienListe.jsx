@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 import "./ImmobilienListe.css";
 
 const ImmobilienListe = ({ immobilien }) => {
+  const navigate = useNavigate();
 
+  const handleClick = (id) => {
+ 
+   
+  };
 
   return (
     <div className="immobilien-liste">
