@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Reac1.css";
 import Axios from "axios";
 
-function PropertyForm1() {
+const Immobilie = ({ immobilie }) => {
   const [bezeichnung, setBezeichnung] = useState("");
   const [typen, setTypen] = useState("Einfamilienhaus");
   const [baujahr, setBaujahr] = useState("");
@@ -14,29 +14,31 @@ function PropertyForm1() {
   const [ort, setOrt] = useState("");
   const [bilder, setBilder] = useState("");
   const [status, setStatus] = useState("vermietet");
-  const [zustand, setZustand] = useState("Sanierbedürftig");
+
+  const [zustand, setZustand] = useState("Sanierungsbedürftig");
+  const [searchTerm] = useState("");
 
   useEffect(() => {
     // Fetch data from server and populate state variables
-    Axios.get("http://localhost:3001/search", {
+    Axios.get(`http://localhost:3001/search?q=${searchTerm}`, {
       params: {
-        q: "Test",
+        q: searchTerm,
       },
     })
       .then((response) => {
-        const data = response.data[0];
-        setBezeichnung(data.ImmoEigBezeichnung);
-        setTypen(data.ImmoEigTypen);
-        setBaujahr(data.ImmoEigBaujahr);
-        setGrundstueckflaeche(data.ImmoEigGrundstueckflaeche);
-        setWohnflaeche(data.ImmoEigWohnflaeche);
-        setAusbaustandart(data.ImmoEigAusbaustandart);
-        setAnzahlZimmer(data.ImmoEigAnzahlZimmer);
-        setAdresse(data.ImmoEigAndresse);
-        setOrt(data.ImmoEigOrt);
-        setBilder(data.ImmoEigBilder);
-        setStatus(data.ImmoEigStatus);
-        setZustand(data.ImmoEigZustand);
+        const searchTerm = response.data;
+        setBezeichnung(searchTerm.ImmoEigBezeichnung);
+        setTypen(searchTerm.ImmoEigTypen);
+        setBaujahr(searchTerm.ImmoEigBaujahr);
+        setGrundstueckflaeche(searchTerm.ImmoEigGrundstueckflaeche);
+        setWohnflaeche(searchTerm.ImmoEigWohnflaeche);
+        setAusbaustandart(searchTerm.ImmoEigAusbaustandart);
+        setAnzahlZimmer(searchTerm.ImmoEigAnzahlZimmer);
+        setAdresse(searchTerm.ImmoEigAndresse);
+        setOrt(searchTerm.ImmoEigOrt);
+        setBilder(searchTerm.ImmoEigBilder);
+        setStatus(searchTerm.ImmoEigStatus);
+        setZustand(searchTerm.ImmoEigZustand);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -45,7 +47,7 @@ function PropertyForm1() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    Axios.put(`http://localhost:3001/put/0`, {
+    Axios.put(`http://localhost:3001/immobilien/${immobilie.ImmoEigId}`, {
       bezeichnung: bezeichnung,
       typen: typen,
       baujahr: baujahr,
@@ -143,12 +145,13 @@ function PropertyForm1() {
         onChange={(e) => setOrt(e.target.value)}
       />
 
-      <label htmlFor="ort">Bilder</label>
+      <label htmlFor="bilder">Bilder</label>
+
       <input
         type="file"
         id="bilder"
         value={bilder}
-        onChange={(e) => setOrt(e.target.value)}
+        onChange={(e) => setBilder(e.target.value)}
       />
 
       <label htmlFor="status">Status</label>
@@ -164,6 +167,7 @@ function PropertyForm1() {
       </select>
 
       <label htmlFor="zustand">Zustand</label>
+
       <select
         id="zustand"
         value={zustand}
@@ -177,6 +181,6 @@ function PropertyForm1() {
       <button type="submit">Save</button>
     </form>
   );
-}
+};
 
-export default PropertyForm1;
+export default Immobilie;

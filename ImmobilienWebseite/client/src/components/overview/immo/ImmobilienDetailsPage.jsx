@@ -4,7 +4,7 @@ import ImmobilienDetails from "./ImmobilienDetails.jsx";
 
 const ImmobilienDetailsPage = ({ immobilien }) => {
   const { id } = useParams();
-  const immobilie = immobilien.find((item) => item.id === parseInt(id));
+  const immobilie = immobilien.find((item) => item.ImmoEigId === parseInt(id));
 
   if (!immobilie) {
     return <div>Immobilie nicht gefunden.</div>;

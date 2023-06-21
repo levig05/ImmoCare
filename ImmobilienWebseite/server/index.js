@@ -23,12 +23,13 @@ app.post("/create", (req, res) => {
   const anzahlZimmer = req.body.anzahlZimmer;
   const adresse = req.body.adresse;
   const ort = req.body.ort;
-  const bilder = req.body.ort;
+  const plz = req.body.plz;
+  const bilder = req.body.bilder;
   const status = req.body.status;
   const zustand = req.body.zustand;
 
   connection.query(
-    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigBilder, ImmoEigStatus, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO TImmoEigenschaften (ImmoEigBezeichnung, ImmoEigTypen, ImmoEigBaujahr, ImmoEigGrundstueckflaeche, ImmoEigWohnflaeche, ImmoEigAusbaustandart, ImmoEigAnzahlZimmer, ImmoEigAndresse, ImmoEigOrt, ImmoEigPLZ, ImmoEigBilder, ImmoEigStatus, ImmoEigZustand) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
     [
       bezeichnung,
       typen,
@@ -39,6 +40,7 @@ app.post("/create", (req, res) => {
       anzahlZimmer,
       adresse,
       ort,
+      plz,
       bilder,
       status,
       zustand,
@@ -53,8 +55,9 @@ app.post("/create", (req, res) => {
   );
 });
 
-app.put("/put/0", (req, res) => {
-  const id = req.params.id;
+app.put("/immobilien/:id", (req, res) => {
+  const immoId = req.params.id;
+
   const bezeichnung = req.body.bezeichnung;
   const typen = req.body.typen;
   const baujahr = req.body.baujahr;
@@ -64,14 +67,16 @@ app.put("/put/0", (req, res) => {
   const anzahlZimmer = req.body.anzahlZimmer;
   const adresse = req.body.adresse;
   const ort = req.body.ort;
+  const plz = req.body.plz;
   const bilder = req.body.bilder;
   const status = req.body.status;
   const zustand = req.body.zustand;
 
   connection.query(
-    "UPDATE TImmoEigenschaften SET ImmoEigTypen=?, ImmoEigBaujahr=?, ImmoEigGrundstueckflaeche=?, ImmoEigWohnflaeche=?, ImmoEigAusbaustandart=?, ImmoEigAnzahlZimmer=?, ImmoEigAndresse=?, ImmoEigOrt=?, ImmoEigBilder=?, ImmoEigStatus=?, ImmoEigZustand=?, ImmoEigBezeichnung=? WHERE ImmoEigID=?",
+    `UPDATE TImmoEigenschaften SET, ImmoEigBezeichnung ImmoEigTypen=?, ImmoEigBaujahr=?, ImmoEigGrundstueckflaeche=?, ImmoEigWohnflaeche=?, ImmoEigAusbaustandart=?, ImmoEigAnzahlZimmer=?, ImmoEigAndresse=?, ImmoEigOrt=?, ImmoEigBilder=?, ImmoEigStatus=?, ImmoEigZustand=? WHERE  '%${immoId}%'`,
 
     [
+      bezeichnung,
       typen,
       baujahr,
       grundstueckflaeche,
@@ -80,11 +85,10 @@ app.put("/put/0", (req, res) => {
       anzahlZimmer,
       adresse,
       ort,
+      plz,
       bilder,
       status,
       zustand,
-      bezeichnung,
-      id,
     ],
     (err, result) => {
       if (err) {
@@ -112,16 +116,32 @@ app.get("/search", (req, res) => {
   });
 });
 
-app.delete("/delete:id", (req, res) => {
-  const { id } = req.params;
+app.get("/output", (req, res) => {
+  const sql = "SELECT * FROM TImmoEigenschaften";
 
-  const sql = "DELETE FROM TImmoEigenschaften WHERE id = ?";
-  connection.query(sql, [id], (err, result) => {
-    if (err) {
-      console.error("Error deleting data:", err);
-      res.status(500).json({ error: "An error occurred" });
+  connection.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error searching in MySQL:", error);
+      res.status(500).send("Internal server error");
     } else {
-      res.sendStatus(200);
+      res.send(results);
+    }
+  });
+});
+
+app.delete("/immobilien/:id", (req, res) => {
+  const immoId = req.params.id;
+
+  const sql = "DELETE FROM TImmoEigenschaften WHERE ImmoEigId = ?";
+
+  connection.query(sql, [immoId], (error, results) => {
+    if (error) {
+      console.error("Fehler beim Löschen der Immobilie:", error);
+      res.status(500).json({ message: "Fehler beim Löschen der Immobilie." });
+    } else if (results.affectedRows === 0) {
+      res.status(404).json({ message: "Immobilie nicht gefunden." });
+    } else {
+      res.status(200).json({ message: "Immobilie erfolgreich gelöscht." });
     }
   });
 });

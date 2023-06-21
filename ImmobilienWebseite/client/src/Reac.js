@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Reac.css";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function PropertyForm() {
   const [bezeichnung, setBezeichnung] = useState("");
@@ -12,9 +13,11 @@ function PropertyForm() {
   const [anzahlZimmer, setAnzahlZimmer] = useState("");
   const [adresse, setAdresse] = useState("");
   const [ort, setOrt] = useState("");
+  const [plz, setPLZ] = useState("");
   const [bilder, setBilder] = useState("");
   const [status, setStatus] = useState("vermietet");
-  const [zustand, setZustand] = useState("Sanierbedürftig");
+
+  const [zustand, setZustand] = useState("Sanierungsbedürftig");
 
   const addImmobilie = () => {
     Axios.post("http://localhost:3001/create", {
@@ -27,12 +30,18 @@ function PropertyForm() {
       anzahlZimmer: anzahlZimmer,
       adresse: adresse,
       ort: ort,
+      plz: plz,
       bilder: bilder,
       status: status,
       zustand: zustand,
     }).then(() => {
-      console.log("success");
+      alert("Die Daten wurden in der DB gespeichert.");
     });
+  };
+  const navigate = useNavigate();
+
+  const Hinzufügen = () => {
+    navigate("/");
   };
 
   const handleFormSubmit = (event) => {
@@ -121,6 +130,14 @@ function PropertyForm() {
         onChange={(e) => setOrt(e.target.value)}
       />
 
+      <label htmlFor="plz">PLZ</label>
+      <input
+        type="number"
+        id="plz"
+        value={plz}
+        onChange={(e) => setPLZ(e.target.value)}
+      />
+
       <label htmlFor="bilder">Bilder</label>
       <input
         type="file"
@@ -147,12 +164,15 @@ function PropertyForm() {
         value={zustand}
         onChange={(e) => setZustand(e.target.value)}
       >
-        <option value="Sarnierungsbedürftig">Sarnierungsbedürftig</option>
+        <option value="Sanierungsbedürftig">Sanierungsbedürftig</option>
         <option value="Neuwertig">Neuwertig</option>
         <option value="Normal">Normal</option>
       </select>
 
       <button onClick={addImmobilie}>Save</button>
+      <button className="HinzufügenButton" onClick={Hinzufügen}>
+        Zurück
+      </button>
     </form>
   );
 }

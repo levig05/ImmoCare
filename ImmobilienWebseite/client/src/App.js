@@ -8,41 +8,8 @@ import ImmobilienDetailsPage from "./components/overview/immo/ImmobilienDetailsP
 import React, { useState } from "react";
 
 function App() {
-  const [searchResults, setSearchResults] = useState([
-    {
-      id: 1,
-      bezeichnung: "Immobilie 1",
-      typen: "haus",
-      baujahr: "Adresse 1",
-      grundstueckflaeche: "4",
-      wohnflaeche: "15",
-      ausbaustandart: "haus",
-      anzahlzimmer: "3",
-      adresse: "Strasse 123",
-      ort: "Frauenfeld",
-      status: "belegt",
-      zustand: "okay",
-      bild: "bild1.jpg",
-      // Weitere Informationen zur Immobilie
-    },
-    {
-      id: 2,
-      bezeichnung: "Immobilie 2",
-      typen: "haus",
-      baujahr: "Adresse 1",
-      grundstueckflaeche: "4",
-      wohnflaeche: "15",
-      ausbaustandart: "haus",
-      anzahlzimmer: "3",
-      adresse: "Strasse 1234",
-      ort: "Frauenfeld",
-      status: "belegt",
-      zustand: "okay",
-      bild: "bild2.jpg",
-      // Weitere Informationen zur Immobilie
-    },
-    // Weitere Immobilien
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
+
   return (
     <div className="App">
       <Router>
@@ -59,6 +26,7 @@ function App() {
                 />
               </div>
             }
+            elements={<ImmobilienDetailsPage immobilien={searchResults} />}
           />
           <Route exact path="/Reac" element={<PropertyForm />} />
           <Route exact path="/Reac1" element={<PropertyForm1 />} />
