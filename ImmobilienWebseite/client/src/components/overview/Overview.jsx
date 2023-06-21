@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./overview.css";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
@@ -24,11 +24,17 @@ function Overview({ setSearchResults, searchResults }) {
       alert("Keine Ergebnisse gefunden");
     }
   };
+
   const handleReset = () => {
     setSearchResults([]);
     setSearchTerm("");
     navigate("/");
   };
+
+  useEffect(() => {
+    handleSearch();
+  }, []); // Leeres Abhängigkeitsarray, damit der Effekt nur beim Start der Komponente ausgeführt wird
+
   return (
     <>
       <div className="Searchbar">
